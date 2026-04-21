@@ -1,3 +1,6 @@
+import random
+
+
 class GenreRecommendation:
     def recommend(self, songs, genre):
         results = []
@@ -6,7 +9,7 @@ class GenreRecommendation:
             if song.get_genre().lower() == genre.lower():
                 results.append(song)
 
-        return results
+        return random.sample(results, min(3, len(results)))
 
 
 class MoodRecommendation:
@@ -17,4 +20,4 @@ class MoodRecommendation:
             if song.get_mood().lower() == mood.lower():
                 results.append(song)
 
-        return results
+        return random.sample(results, min(3, len(results)))
