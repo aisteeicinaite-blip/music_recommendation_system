@@ -10,6 +10,16 @@ def show_menu():
     print("3 - Exit")
 
 
+def show_genres():
+    print("\nAvailable genres:")
+    print("Pop, Rock, Hip-Hop, R&B, Indie, Electronic")
+
+
+def show_moods():
+    print("\nAvailable moods:")
+    print("Happy, Sad, Chill, Energetic, Romantic, Confident")
+
+
 def main():
     file_manager = FileManager()
     songs = file_manager.load_songs("data/songs.csv")
@@ -19,14 +29,19 @@ def main():
         choice = input("Choose option: ")
 
         if choice == "1":
+            show_genres()
             user_input = input("Enter genre: ")
             strategy = GenreRecommendation()
+
         elif choice == "2":
+            show_moods()
             user_input = input("Enter mood: ")
             strategy = MoodRecommendation()
+
         elif choice == "3":
             print("Goodbye!")
             break
+
         else:
             print("Wrong choice")
             continue
