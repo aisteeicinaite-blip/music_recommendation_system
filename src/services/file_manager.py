@@ -19,5 +19,12 @@ class FileManager:
             songs.append(song)
 
         file.close()
-
         return songs
+
+    def save_recommendations(self, file_name, songs):
+        file = open(file_name, "w", encoding="utf-8")
+
+        for song in songs:
+            file.write(str(song) + "\n")
+
+        file.close()

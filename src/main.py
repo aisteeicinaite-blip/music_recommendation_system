@@ -21,26 +21,46 @@ def main():
         if choice == "1":
             user_input = input("Enter genre: ")
             strategy = GenreRecommendation()
-
         elif choice == "2":
             user_input = input("Enter mood: ")
             strategy = MoodRecommendation()
-
         elif choice == "3":
             print("Goodbye!")
             break
-
         else:
             print("Wrong choice")
             continue
 
-        engine = RecommendationEngine(strategy)
-        results = engine.recommend(songs, user_input)
+        while True:
+            engine = RecommendationEngine(strategy)
+            results = engine.recommend(songs, user_input)
 
-        print("\nRecommended songs:\n")
+            print("\nRecommended songs:\n")
 
-        for song in results:
-            print(song)
+            if len(results) == 0:
+                print("No songs found")
+                break
+
+            for song in results:
+                print(song)
+
+            save = input("\nSave recommendations to file? (yes/no): ").lower()
+
+            if save == "yes":
+                file_manager.save_recommendations("recommendations.txt", results)
+                print("Recommendations saved to recommendations.txt")
+
+            more = input("\nGenerate more? (yes/no): ").lower()
+
+            if more == "yes":
+                same = input("Use same criteria? (yes/no): ").lower()
+
+                if same == "yes":
+                    continue
+                else:
+                    break
+            else:
+                break
 
 
 if __name__ == "__main__":
