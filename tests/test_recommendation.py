@@ -22,6 +22,22 @@ class TestRecommendation(unittest.TestCase):
         result = strategy.recommend(self.songs, "Happy")
         self.assertTrue(len(result) > 0)
 
+    def test_max_3_results(self):
+        strategy = GenreRecommendation()
+        result = strategy.recommend(self.songs, "Pop")
+        self.assertTrue(len(result) <= 3)
 
+    def test_case_insensitive_input(self):
+        strategy = GenreRecommendation()
+        result = strategy.recommend(self.songs, "pop")
+        self.assertTrue(len(result) > 0)
+
+
+    def test_empty_song_list(self):
+        strategy = MoodRecommendation()
+        result = strategy.recommend([], "Happy")
+        self.assertEqual(result, [])
+
+    
 if __name__ == "__main__":
     unittest.main()
